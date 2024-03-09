@@ -70,19 +70,19 @@ def pg_UI(data):
         t_lot_ok = f"read lot and date = {data['data complete'][0]}"
         c_lot_ok = (20, 255, 20) if data['data complete'][0] else (255, 20, 20)
         if isinstance(data['date'], datetime):
-            t_date = f"date: {data['date'].strftime('%d/%m/%y')}"
+            t_date = f"{data['date'].strftime('%d/%m/%y')}"
         else:
             t_date = ''
         texts = {
             'fps': (font.render(t_fps, True, (0, 0, 0)), 1),
             'barcode ok': (font.render(t_barcode_ok, True, c_barcode_ok), 4),
-            'barcode': (font.render(f"{data['barcode']}", True, (120, 90, 255)), 5),
-            'MC': (font.render(f"MC: {data['bar MC']}", True, (20, 90, 255)), 6),
-            'QTY': (font.render(f"QTY: {data['bar QTY']}", True, (20, 90, 255)), 7),
+            'barcode': (font.render(f"barcode: {data['barcode']}", True, (120, 90, 255)), 5),
+            'MC': (font.render(f"MC  : {data['bar MC']}", True, (20, 90, 255)), 6),
+            'QTY': (font.render(f"QTY : {data['bar QTY']}", True, (20, 90, 255)), 7),
             'lot ok': (font.render(t_lot_ok, True, c_lot_ok), 10),
-            'LN': (font.render(f"{data['LN']}", True, (120, 90, 255)), 11),
-            'lot': (font.render(f"lot: {data['lot']}", True, (20, 90, 255)), 12),
-            'date': (font.render(t_date, True, (20, 90, 255)), 13)
+            'LN': (font.render(f"LN    : {data['LN']}", True, (120, 90, 255)), 11),
+            'lot': (font.render(f"lot     : {data['lot']}", True, (20, 90, 255)), 12),
+            'date': (font.render(f'date : {t_date}', True, (20, 90, 255)), 13)
         }
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
