@@ -55,7 +55,7 @@ def pg_UI(data):
 
     clock = pygame.time.Clock()
     font = pygame.font.Font('Roboto-Regular.ttf', 18)
-    while True:
+    while data['run']:
         s, img = data['cap']
         if s:
             img = cv2.cvtColor(img, cv2.COLOR_GRAY2BGR)
@@ -86,6 +86,7 @@ def pg_UI(data):
         }
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
+                data['run'] = False
                 pygame.quit()
                 sys.exit()
 

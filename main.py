@@ -19,7 +19,7 @@ def capture(data):
     import cv2
     cap = cv2.VideoCapture(0)
 
-    while True:
+    while data['run']:
         s, img = cap.read()
         if s:
             data['cap'] = s, cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
@@ -33,7 +33,7 @@ def main(data):
     from read_barcode import read_barcodes
     pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
     t1 = datetime.now()
-    while True:
+    while data['run']:
         t2 = t1
         t1 = datetime.now()
         data['fps'] = round(1 / max(0.001, (t1 - t2).total_seconds()), 1)
@@ -102,7 +102,7 @@ def getkey(data):
 
     sound1 = pygame.mixer.Sound('teed.mp3')
     sound2 = pygame.mixer.Sound('teed teed.mp3')
-    while True:
+    while data['run']:
         # event = keyboard.read_event()
         # stamp_time = event.time
         # event_type = event.event_type
@@ -150,6 +150,7 @@ if __name__ == '__main__':
 
     manager = multiprocessing.Manager()
     data = manager.dict()
+    data['run'] = True
     data['cap'] = (None, None)
     data['fps'] = 0
 
